@@ -9,10 +9,12 @@
 
 * {
     box-sizing: border-box;
-    user-select: none; /* Desktop feel */
+    user-select: none;
+    /* Desktop feel */
 }
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -26,7 +28,8 @@ body, html {
 /* --- Desktop --- */
 #desktop {
     width: 100%;
-    height: calc(100% - 40px); /* Leave space for taskbar */
+    height: calc(100% - 40px);
+    /* Leave space for taskbar */
     position: relative;
     padding: 20px;
     display: flex;
@@ -34,6 +37,11 @@ body, html {
     flex-wrap: wrap;
     align-content: flex-start;
     gap: 20px;
+    background-image: url('../assets/logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 300px;
+    /* Adjust size as needed, user wanted it central */
 }
 
 .desktop-icon {
@@ -49,7 +57,8 @@ body, html {
 }
 
 .desktop-icon:hover {
-    border: 1px dashed var(--ink-color); /* Raw hover effect */
+    border: 1px dashed var(--ink-color);
+    /* Raw hover effect */
 }
 
 .icon-img {
@@ -78,7 +87,8 @@ body, html {
     left: 0;
     width: 100%;
     height: calc(100% - 40px);
-    pointer-events: none; /* Let clicks pass through to desktop if no window */
+    pointer-events: none;
+    /* Let clicks pass through to desktop if no window */
 }
 
 .window {
@@ -94,7 +104,8 @@ body, html {
 }
 
 .window.active {
-    z-index: 1000; /* Will be managed by JS, but this is a base */
+    z-index: 1000;
+    /* Will be managed by JS, but this is a base */
 }
 
 .title-bar {
@@ -225,7 +236,11 @@ textarea.rascunho-editor {
     font-size: 12px;
     line-height: 1.4;
 }
+
 .ruido-entry {
     margin: 2px 0;
 }
-.ruido-entry.error { color: var(--error-color); }
+
+.ruido-entry.error {
+    color: var(--error-color);
+}
