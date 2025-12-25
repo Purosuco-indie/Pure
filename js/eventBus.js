@@ -19,11 +19,11 @@ class EventBus {
         if (this.listeners[event]) {
             this.listeners[event].forEach(callback => callback(data));
         }
-        // Also emit a wildcard for "Ruído" app to log everything
         if (event !== '*') {
             this.emit('*', { event, data });
         }
     }
 }
 
-export const eventBus = new EventBus();
+// Global instance
+const eventBus = new EventBus();

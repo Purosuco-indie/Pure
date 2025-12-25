@@ -1,4 +1,4 @@
-export const Rodar = {
+const Rodar = {
     id: 'rodar',
     title: 'Rodar',
     init: (container, windowId) => {

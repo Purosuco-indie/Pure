@@ -1,17 +1,10 @@
-import { WindowManager } from './windowManager.js';
-import { Taskbar } from './taskbar.js';
-import { Desktop } from './desktop.js';
-import { eventBus } from './eventBus.js';
-
-import { Rascunho } from './apps/rascunho.js';
-import { Ruido } from './apps/ruido.js';
-import { Rodar } from './apps/rodar.js';
+// Imports removed. Relying on global variables loaded via <script> tags.
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Defines available apps
+    // Defines available apps (Globals)
     const apps = [Rascunho, Ruido, Rodar];
 
-    // Initialize Systems
+    // Initialize Systems (Globals)
     const wm = new WindowManager('windows-container');
     const taskbar = new Taskbar();
     const desktop = new Desktop(apps);

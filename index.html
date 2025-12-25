@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puro Suco OS</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div id="desktop">
         <!-- Icons will be injected here -->
@@ -21,6 +23,17 @@
         <div id="clock">00:00</div>
     </div>
 
-    <script type="module" src="js/main.js"></script>
+    <!-- Scripts loaded purely (no modules) for local file:// compatibility -->
+    <script src="js/eventBus.js"></script>
+    <script src="js/windowManager.js"></script>
+    <script src="js/taskbar.js"></script>
+    <script src="js/desktop.js"></script>
+
+    <script src="js/apps/rascunho.js"></script>
+    <script src="js/apps/ruido.js"></script>
+    <script src="js/apps/rodar.js"></script>
+
+    <script src="js/main.js"></script>
 </body>
+
 </html>

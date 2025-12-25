@@ -1,6 +1,6 @@
-import { eventBus } from './eventBus.js';
+// import { eventBus } from './eventBus.js';
 
-export class Taskbar {
+class Taskbar {
     constructor() {
         this.clockEl = document.getElementById('clock');
         this.taskListEl = document.getElementById('task-list');

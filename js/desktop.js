@@ -1,6 +1,6 @@
-import { eventBus } from './eventBus.js';
+// import { eventBus } from './eventBus.js';
 
-export class Desktop {
+class Desktop {
     constructor(apps) {
         this.container = document.getElementById('desktop');
         this.apps = apps; // List of available app configs

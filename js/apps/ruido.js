@@ -1,6 +1,6 @@
-import { eventBus } from '../eventBus.js';
+// import { eventBus } from '../eventBus.js';
 
-export const Ruido = {
+const Ruido = {
     id: 'ruido',
     title: 'Ruído',
     init: (container, windowId) => {

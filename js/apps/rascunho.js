@@ -1,4 +1,4 @@
-export const Rascunho = {
+const Rascunho = {
     id: 'rascunho',
     title: 'Rascunho',
     init: (container, windowId) => {

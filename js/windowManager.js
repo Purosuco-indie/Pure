@@ -1,6 +1,6 @@
-import { eventBus } from './eventBus.js';
+// import { eventBus } from './eventBus.js'; -> Globals now
 
-export class WindowManager {
+class WindowManager {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         this.windows = new Map(); // id -> { element, zIndex, ... }
