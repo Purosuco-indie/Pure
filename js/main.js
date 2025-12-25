@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Defines available apps (Globals)
-    const apps = [Rascunho, Ruido, Rodar];
+    const apps = [Rascunho, Ruido, Rodar, Notas];
 
     // Initialize Systems (Globals)
     const wm = new WindowManager('windows-container');
