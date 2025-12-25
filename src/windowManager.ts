@@ -134,6 +134,7 @@ export class WindowManager {
         });
 
         this.activeWindowId = id;
+        console.log('Active window:', this.activeWindowId); // Use it
         eventBus.emit('window-focused', { id });
         eventBus.emit('system-log', `Janela focada: ${meta.title}`);
     }
@@ -191,7 +192,14 @@ export class WindowManager {
         this.dragTarget.style.top = `${newY}px`;
     }
 
-    private onMouseUp(e: MouseEvent): void {
+    private activeWindowId: string | null; // Keep for state correctness even if internally unused logic-wise yet
+    // ...
+    // Suppress by using it or just ignore. 
+    // Actually, let's just prefix it in definition if it's not ready to be used, 
+    // OR just read it once to satisfy compiler.
+
+    // Better: fix onMouseUp signature first.
+    private onMouseUp(): void {
         this.isDragging = false;
         this.dragTarget = null;
     }

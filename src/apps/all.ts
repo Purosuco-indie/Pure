@@ -5,7 +5,7 @@ import { eventBus } from '../eventBus.ts';
 export const Arquivos: App = {
     id: 'arquivos',
     title: 'Arquivos',
-    init: (container: HTMLElement, windowId: string) => {
+    init: (container: HTMLElement, _windowId: string) => {
         container.style.display = 'flex';
         container.style.flexDirection = 'column';
         container.style.height = '100%';
@@ -104,7 +104,7 @@ export const Arquivos: App = {
 export const Lixeira: App = {
     id: 'lixeira',
     title: 'Lixeira',
-    init: (container: HTMLElement, windowId: string) => {
+    init: (container: HTMLElement, _windowId: string) => {
         container.style.display = 'flex';
         container.style.flexDirection = 'column';
         container.style.height = '100%';
@@ -178,7 +178,7 @@ export const Lixeira: App = {
 export const Notas: App = {
     id: 'notas',
     title: 'Notas',
-    init: (container: HTMLElement, windowId: string) => {
+    init: (container: HTMLElement, _windowId: string) => {
         container.style.display = 'flex';
         container.style.gap = '10px';
         container.style.height = '100%';
@@ -341,7 +341,7 @@ export const Notas: App = {
 export const Rascunho: App = {
     id: 'rascunho',
     title: 'Rascunho',
-    init: (container: HTMLElement, windowId: string) => {
+    init: (container: HTMLElement, _windowId: string) => {
         const textarea = document.createElement('textarea');
         textarea.classList.add('rascunho-editor');
         textarea.placeholder = 'Escreva aqui...';
@@ -362,7 +362,7 @@ export const Rascunho: App = {
 export const Ruido: App = {
     id: 'ruido',
     title: 'Ruído',
-    init: (container: HTMLElement, windowId: string) => {
+    init: (container: HTMLElement, _windowId: string) => {
         const logContent = document.createElement('div');
         logContent.classList.add('ruido-log');
         container.appendChild(logContent);
@@ -397,7 +397,7 @@ export const Ruido: App = {
 export const Rodar: App = {
     id: 'rodar',
     title: 'Rodar',
-    init: (container: HTMLElement, windowId: string) => {
+    init: (container: HTMLElement, _windowId: string) => {
         const canvas = document.createElement('canvas');
         canvas.width = 300;
         canvas.height = 200;

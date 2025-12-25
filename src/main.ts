@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const apps = [Arquivos, Lixeira, Notas, Rascunho, Ruido, Rodar];
 
     // Initialize Systems
-    const wm = new WindowManager('windows-container');
-    const taskbar = new Taskbar();
-    const desktop = new Desktop(apps);
+    new WindowManager('windows-container');
+    new Taskbar();
+    new Desktop(apps);
 
     console.log('Puro Suco OS Initialized');
     eventBus.emit('system-log', 'Sistema iniciado com sucesso.');
