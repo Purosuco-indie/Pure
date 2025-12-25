@@ -1,4 +1,10 @@
+import { FileData } from './types.ts';
+import { eventBus } from './eventBus.ts';
+
 class VirtualFileSystem {
+    private storageKey: string;
+    private cache: FileData[];
+
     constructor() {
         this.storageKey = 'purosuco_virtual_fs';
         this.cache = this.load();
@@ -10,24 +16,22 @@ class VirtualFileSystem {
         }
     }
 
-    load() {
-        return JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+    private load(): FileData[] {
+        const stored = localStorage.getItem(this.storageKey);
+        return stored ? JSON.parse(stored) : [];
     }
 
-    save() {
+    private save(): void {
         localStorage.setItem(this.storageKey, JSON.stringify(this.cache));
-        // Emit global change event so apps update
-        if (typeof eventBus !== 'undefined') {
-            eventBus.emit('fs-change');
-        }
+        eventBus.emit('fs-change');
     }
 
-    getFiles(includeDeleted = false) {
-        return this.cache.filter(f => !!f.deleted === includeDeleted);
+    public getFiles(includeDeleted: boolean = false): FileData[] {
+        return this.cache.filter(f => !!f.deleted === includeDeleted); // ensure boolean comparison
     }
 
-    createFile(name, type, content = '') {
-        const file = {
+    public createFile(name: string, type: 'text' | 'other', content: string = ''): FileData {
+        const file: FileData = {
             id: Date.now().toString() + Math.random().toString().slice(2, 5),
             name,
             type,
@@ -40,7 +44,7 @@ class VirtualFileSystem {
         return file;
     }
 
-    deleteFile(id) {
+    public deleteFile(id: string): void {
         const file = this.cache.find(f => f.id === id);
         if (file) {
             file.deleted = true;
@@ -48,7 +52,7 @@ class VirtualFileSystem {
         }
     }
 
-    restoreFile(id) {
+    public restoreFile(id: string): void {
         const file = this.cache.find(f => f.id === id);
         if (file) {
             file.deleted = false;
@@ -56,10 +60,10 @@ class VirtualFileSystem {
         }
     }
 
-    permanentDelete(id) {
+    public permanentDelete(id: string): void {
         this.cache = this.cache.filter(f => f.id !== id);
         this.save();
     }
 }
 
-const fileSystem = new VirtualFileSystem();
+export const fileSystem = new VirtualFileSystem();

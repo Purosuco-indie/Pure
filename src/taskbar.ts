@@ -1,34 +1,36 @@
-// import { eventBus } from './eventBus.js';
+import { eventBus } from './eventBus.ts';
 
-class Taskbar {
+export class Taskbar {
+    private clockEl: HTMLElement;
+    private taskListEl: HTMLElement;
+    private startBtn: HTMLElement;
+    private tasks: Map<string, HTMLElement>;
+
     constructor() {
-        this.clockEl = document.getElementById('clock');
-        this.taskListEl = document.getElementById('task-list');
-        this.startBtn = document.getElementById('start-btn');
-        this.tasks = new Map(); // windowId -> element
+        this.clockEl = document.getElementById('clock')!;
+        this.taskListEl = document.getElementById('task-list')!;
+        this.startBtn = document.getElementById('start-btn')!;
+        this.tasks = new Map();
 
         this.startClock();
         this.setupListeners();
         this.setupStartMenu();
     }
 
-    setupListeners() {
-        eventBus.on('window-opened', (data) => this.addTask(data));
-        eventBus.on('window-closed', (data) => this.removeTask(data.id));
-        eventBus.on('window-focused', (data) => this.highlightTask(data.id));
+    private setupListeners(): void {
+        eventBus.on('window-opened', (data: any) => this.addTask(data));
+        eventBus.on('window-closed', (data: any) => this.removeTask(data.id));
+        eventBus.on('window-focused', (data: any) => this.highlightTask(data.id));
     }
 
-    setupStartMenu() {
+    private setupStartMenu(): void {
         this.startBtn.addEventListener('click', () => {
-            // For MVP, "Start" could just minimize all windows to show desktop, or log something.
-            // Or maybe reset? Let's make it toggle minimize all for now or just log.
-            // Prompt says "Botão inicial simples".
             console.log("Start clicked");
             eventBus.emit('system-log', 'Botão Início clicado');
         });
     }
 
-    startClock() {
+    private startClock(): void {
         const updateTime = () => {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -39,7 +41,7 @@ class Taskbar {
         setInterval(updateTime, 1000);
     }
 
-    addTask({ id, title, appId }) {
+    private addTask({ id, title }: { id: string, title: string }): void {
         const btn = document.createElement('div');
         btn.classList.add('task-item');
         btn.dataset.id = id;
@@ -54,14 +56,14 @@ class Taskbar {
         this.tasks.set(id, btn);
     }
 
-    removeTask(id) {
+    private removeTask(id: string): void {
         if (this.tasks.has(id)) {
-            this.tasks.get(id).remove();
+            this.tasks.get(id)!.remove();
             this.tasks.delete(id);
         }
     }
 
-    highlightTask(id) {
+    private highlightTask(id: string): void {
         this.tasks.forEach((btn, key) => {
             if (key === id) btn.classList.add('active');
             else btn.classList.remove('active');

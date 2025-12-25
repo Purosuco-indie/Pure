@@ -1,10 +1,15 @@
-// Imports removed. Relying on global variables loaded via <script> tags.
+import { WindowManager } from './windowManager.ts';
+import { Taskbar } from './taskbar.ts';
+import { Desktop } from './desktop.ts';
+import { eventBus } from './eventBus.ts';
+
+import { Rascunho, Ruido, Rodar, Notas, Arquivos, Lixeira } from './apps/all.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Defines available apps (Globals)
+    // Defines available apps
     const apps = [Arquivos, Lixeira, Notas, Rascunho, Ruido, Rodar];
 
-    // Initialize Systems (Globals)
+    // Initialize Systems
     const wm = new WindowManager('windows-container');
     const taskbar = new Taskbar();
     const desktop = new Desktop(apps);
