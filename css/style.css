@@ -1,0 +1,231 @@
+:root {
+    --bg-color: #ffffff;
+    --ink-color: #000000;
+    --error-color: #ff0000;
+    --border-width: 2px;
+    --shadow-offset: 4px;
+    --font-main: 'Courier New', Courier, monospace;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none; /* Desktop feel */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    color: var(--ink-color);
+    font-family: var(--font-main);
+}
+
+/* --- Desktop --- */
+#desktop {
+    width: 100%;
+    height: calc(100% - 40px); /* Leave space for taskbar */
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 20px;
+}
+
+.desktop-icon {
+    width: 80px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 5px;
+}
+
+.desktop-icon:hover {
+    border: 1px dashed var(--ink-color); /* Raw hover effect */
+}
+
+.icon-img {
+    width: 48px;
+    height: 48px;
+    border: var(--border-width) solid var(--ink-color);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 2px 2px 0 0 var(--ink-color);
+}
+
+.icon-label {
+    text-align: center;
+    font-size: 12px;
+    background: var(--bg-color);
+    padding: 2px;
+}
+
+/* --- Windows --- */
+#windows-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 40px);
+    pointer-events: none; /* Let clicks pass through to desktop if no window */
+}
+
+.window {
+    position: absolute;
+    background: var(--bg-color);
+    border: var(--border-width) solid var(--ink-color);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 0 var(--ink-color);
+    min-width: 200px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+}
+
+.window.active {
+    z-index: 1000; /* Will be managed by JS, but this is a base */
+}
+
+.title-bar {
+    height: 30px;
+    border-bottom: var(--border-width) solid var(--ink-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    cursor: grab;
+    background: var(--bg-color);
+}
+
+.title-bar:active {
+    cursor: grabbing;
+}
+
+.title-text {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.window-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.control-btn {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--ink-color);
+    background: white;
+    font-weight: bold;
+    font-family: var(--font-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+}
+
+.control-btn:hover {
+    background: var(--ink-color);
+    color: var(--bg-color);
+}
+
+.window-content {
+    flex: 1;
+    padding: 10px;
+    overflow: auto;
+    background: var(--bg-color);
+}
+
+/* --- Taskbar --- */
+#taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    border-top: var(--border-width) solid var(--ink-color);
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    z-index: 9999;
+}
+
+#start-btn {
+    border: 2px solid var(--ink-color);
+    background: var(--bg-color);
+    padding: 5px 15px;
+    font-family: var(--font-main);
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 0 var(--ink-color);
+}
+
+#start-btn:active {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+}
+
+#task-list {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.task-item {
+    border: 1px solid var(--ink-color);
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 100px;
+}
+
+.task-item.active {
+    background: var(--ink-color);
+    color: var(--bg-color);
+}
+
+#clock {
+    font-weight: bold;
+    border: 1px solid var(--ink-color);
+    padding: 5px;
+}
+
+/* --- App Specific Interface Elements --- */
+textarea.rascunho-editor {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: 1px solid var(--ink-color);
+    font-family: var(--font-main);
+    padding: 5px;
+    outline: none;
+}
+
+.ruido-log {
+    font-size: 12px;
+    line-height: 1.4;
+}
+.ruido-entry {
+    margin: 2px 0;
+}
+.ruido-entry.error { color: var(--error-color); }
